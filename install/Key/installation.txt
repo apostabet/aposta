@@ -1,0 +1,24 @@
+Instalação de script de plataforma de sistema de loteria online ao vivo
+Estas são as etapas de como instalar o script de plataforma do sistema de loteria online ao vivo:
+
+
+Carregue o arquivo inteiro para o servidor que você baixou do download.
+Extraia/descompacte o arquivo e mova todos os arquivos da pasta 
+Arquivos para a pasta principal (onde deseja instalá-lo). 
+exemplo dentro da pasta pasta public_html da sua hospedagem 
+Certifique-se que mudou a versão php para PHP 7.4
+depois de ter feito toda a configuração
+
+Agora navegue em http://your-site-url/install
+coloque os dados do formulário de instalação
+e a Chave key do produto.
+
+acesse seu banco de dados e faça a importação do
+arquivo SQL.
+
+
+e siga o processo. Seu sistema deve estar pronto para uso.
+http://your-site-url/admin
+depois de tudo feito e so navegar
+Nome de usuário : admin
+Senha : admin

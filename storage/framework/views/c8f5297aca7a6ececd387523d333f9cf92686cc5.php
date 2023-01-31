@@ -11,11 +11,11 @@
     <div class="top mb-3 d-flex">
         <button class="btn-custom me-1">
             <i class="fas fa-podcast"></i>
-            <?php echo app('translator')->get('bet slip'); ?>
+            <?php echo app('translator')->get('Bet Slip'); ?>
         </button>
         <a href="<?php echo e(route('user.betHistory')); ?>" class="btn-custom2 light">
             <i class="fas fa-meteor"></i>
-            <?php echo app('translator')->get('my bets'); ?>
+            <?php echo app('translator')->get('My Bets'); ?>
         </a>
     </div>
 

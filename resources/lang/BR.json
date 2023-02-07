@@ -205,7 +205,21 @@
     "Manage Content": "Ger. de Conteúdo",
     "Content Settings": "Config. de Conteúdo",
     "Name": "Nome",
-    "Add New": "Adicionar Novo"
+    "Add New": "Adicionar Novo",
+    "Total Users": "Total de Usuários",
+    "Total Active Users": "Usuários Ativos",
+    "Today Join User": "Usuários Cadastrados Hoje",
+    "Total User Fund": "Fundo total do usuário ",
+    "Payment Statistics": "Estatisticas de Pagemento",
+    "Today's Deposit": "Depósitos Diários",
+    "This Month Deposits": "Depósitos deste mês",
+    "Total Deposit": "Total de Depósitos",
+    "Deposited Charge": "Cobrança depositada",
+    "This Month Statistics": "Estatísticas deste mês",
+    "Bet Amount": "Valor da aposta",
+    "Bet Win Amount": "Valor da aposta ganha",
+    "Bet Refund Amount": "Valor do reembolso da aposta",
+    "Total Subscribers": "Total de Inscritos"
 
     
 }

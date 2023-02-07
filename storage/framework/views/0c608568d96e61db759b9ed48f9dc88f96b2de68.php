@@ -28,7 +28,7 @@
 
 </head>
 
-<body <?php if(session()->get('dark-mode') == 'true'): ?> class="dark-mode" <?php endif; ?>>
+<body <?php if(session()->get('dark-mode') == 'true'): ?> class="" <?php endif; ?>>
 
 
 <?php echo $__env->make($theme.'partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

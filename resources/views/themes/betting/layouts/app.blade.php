@@ -28,7 +28,7 @@
 
 </head>
 
-<body @if(session()->get('dark-mode') == 'true') class="dark-mode" @endif>
+<body @if(session()->get('dark-mode') == 'true') class="" @endif>
 
 
 @include($theme.'partials.nav')

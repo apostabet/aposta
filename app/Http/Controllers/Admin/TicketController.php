@@ -67,7 +67,7 @@ class TicketController extends Controller
             })
             ->latest()
             ->paginate(config('basic.paginate'));
-        $empty_message = 'No Data found.';
+        $empty_message = 'No Data found';
 
 
 

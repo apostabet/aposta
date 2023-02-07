@@ -25,11 +25,11 @@
                 <th class="col-2" v-for="index in (3 - (item.questions).length )"
                     :key="index">
                     <div class="d-flex justify-content-evenly">
-                        <span>1</span>
+                        <span>Casa</span>
                         <span v-if="index == 1">@lang('X')</span>
                         <span v-if="index == 2">@lang('2X')</span>
                         <span v-if="index == 3">@lang('3X')</span>
-                        <span>2</span>
+                        <span>Fora</span>
                     </div>
                 </th>
             </template>

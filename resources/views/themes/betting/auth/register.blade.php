@@ -8,8 +8,8 @@
                     <div class="text-box h-100">
                         <div class="overlay h-100">
                             <div class="text">
-                                <h2>@lang('create an account')</h2>
-                                <a href="{{route('home')}}">@lang('back to home')</a>
+                                <h2>@lang('Sign up')</h2>
+                                <a href="{{route('home')}}">@lang('Back To Home')</a>
                             </div>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                             @csrf
                             <div class="row g-4">
                                 <div class="col-12">
-                                    <h4>@lang('register here')</h4>
+                                    <h4>@lang('Sign up')</h4>
                                 </div>
                                 @if(session()->get('sponsor') != null)
                                     <div class="input-box col-12">
@@ -36,7 +36,7 @@
                                         name="firstname"
                                         value="{{old('firstname')}}"
                                         class="form-control"
-                                        placeholder="@lang('First name')"/>
+                                        placeholder="@lang('First Name')"/>
                                     @error('firstname')<span class="text-danger  mt-1">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="input-box col-6">
@@ -45,7 +45,7 @@
                                         name="lastname"
                                         value="{{old('lastname')}}"
                                         class="form-control"
-                                        placeholder="@lang('Last name')"/>
+                                        placeholder="@lang('Last Name')"/>
                                     @error('lastname')<span class="text-danger  mt-1">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="input-box col-6">
@@ -63,7 +63,7 @@
                                         name="email"
                                         value="{{old('email')}}"
                                         class="form-control"
-                                        placeholder="@lang('Email address')"/>
+                                        placeholder="@lang('Email Address')"/>
                                     @error('email')<span class="text-danger  mt-1">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="input-box col-6">
@@ -127,11 +127,11 @@
                                     </div>
                                 @endif
                             </div>
-                            <button type="submit" class="btn-custom w-100 mt-2">@lang('sign up')</button>
+                            <button type="submit" class="btn-custom w-100 mt-2">@lang('Sign up')</button>
                             <div class="bottom">
                                 @lang('Already have an account?')
 
-                                <a href="{{route('login')}}">@lang('Login here')</a>
+                                <a href="{{route('login')}}">@lang('Login')</a>
                             </div>
                         </form>
                     </div>

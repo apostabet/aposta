@@ -9,7 +9,7 @@
                         <div class="overlay h-100">
                             <div class="text">
                                 <h2>@lang('Sign in to your account')</h2>
-                                <a href="{{route('home')}}">@lang('back to home')</a>
+                                <a href="{{route('home')}}">@lang('Back To Home')</a>
                             </div>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                             @csrf
                             <div class="row g-4">
                                 <div class="col-12">
-                                    <h4>@lang('Login here')</h4>
+                                    <h4>@lang('Login')</h4>
                                 </div>
                                 <div class="input-box col-12">
                                     <input type="text" class="form-control" name="username"
@@ -63,11 +63,11 @@
                                 </div>
                             </div>
 
-                            <button class="btn-custom w-100">@lang('sign in')</button>
+                            <button class="btn-custom w-100">@lang('Login')</button>
                             <div class="bottom">
                                 @lang("Don't have an account?")
 
-                                <a href="{{ route('register') }}">@lang('Create account')</a>
+                                <a href="{{ route('register') }}">@lang('Sign up')</a>
                             </div>
                         </form>
                     </div>

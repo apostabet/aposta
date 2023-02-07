@@ -1,2 +1,2 @@
 <?php echo $__env->make($theme.'errors.500', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php /**PATH /home2/bra93269/teste.epontobr.com.br/resources/views/errors/500.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\laragon\www\aposta\resources\views/errors/500.blade.php ENDPATH**/ ?>

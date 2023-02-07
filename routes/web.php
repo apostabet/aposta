@@ -408,6 +408,7 @@ Route::get('/category/{category_slug}/{category_id}', 'FrontendController@catego
 Route::get('/tournament/{tournament_name}/{tournament_id}', 'FrontendController@tournament')->name('tournament');
 Route::get('/match/{match_name}/{match_id}', 'FrontendController@match')->name('match');
 Route::get('/about', 'FrontendController@about')->name('about');
+Route::get('/rules', 'FrontendController@rules')->name('rules');
 Route::get('/faq', 'FrontendController@faq')->name('faq');
 
 

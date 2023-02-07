@@ -23,11 +23,14 @@
                     <a class="nav-link {{menuActive('about')}}" href="{{route('about')}}">@lang('Quem Somos')</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{menuActive('about')}}" href="{{route('rules')}}">@lang('Regras')</a>
+                </li>
+                {{-- <li class="nav-item">
                     <a class="nav-link {{menuActive('faq')}}" href="{{route('faq')}}">@lang('FAQ')</a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link {{menuActive('blog')}}" href="{{route('blog')}}">@lang('Blog')</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link {{menuActive('contact')}}" href="{{route('contact')}}">@lang('Contato')</a>
                 </li>
@@ -136,13 +139,13 @@
                         class="btn-custom"
                         data-bs-toggle="modal"
                         data-bs-target="#registerModal">
-                        @lang('Juntar')
+                        @lang('Sign up')
                     </button>
                     <button
                         class="btn-custom"
                         data-bs-toggle="modal"
                         data-bs-target="#loginModal">
-                        @lang('Entrar')
+                        @lang('Login')
                     </button>
                 @endguest
             </div>

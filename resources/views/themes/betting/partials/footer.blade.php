@@ -46,7 +46,7 @@
                                     <a href="{{route('about')}}">@lang('About')</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('blog')}}">@lang('Blog')</a>
+                                    <a href="{{route('rules')}}">@lang('Regras')</a>
                                 </li>
                                 <li>
                                     <a href="{{route('contact')}}">@lang('Contact')</a>
@@ -79,7 +79,7 @@
                                         name="email"
                                         autocomplete="off"
                                         class="form-control"
-                                        placeholder="{{trans('Enter Email')}}"
+                                        placeholder="{{trans('Email')}}"
                                         aria-label="Subscribe Newsletter"
                                         aria-describedby="basic-addon"/>
                                     <button type="submit">

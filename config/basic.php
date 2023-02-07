@@ -1,9 +1,9 @@
 <?php return array (
-  'site_title' => 'Seu Logo',
-  'base_color' => '#e37e19',
+  'site_title' => 'Prophecy',
+  'base_color' => '#8fb568',
   'time_zone' => 'UTC',
-  'currency' => 'R$',
-  'currency_symbol' => 'R$',
+  'currency' => 'USD',
+  'currency_symbol' => '$',
   'theme' => 'betting',
   'fraction_number' => 0,
   'paginate' => 20,
@@ -18,7 +18,7 @@
   'address_verification' => 0,
   'identity_verification' => 0,
   'maintenance' => 0,
-  'is_active_cron_notification' => 1,
+  'is_active_cron_notification' => 0,
   'sender_email' => 'support@mail.com',
   'sender_email_name' => 'Bug Finder',
   'email_configuration' => 

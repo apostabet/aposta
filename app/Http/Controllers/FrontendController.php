@@ -112,6 +112,11 @@ class FrontendController extends Controller
             ->get()->groupBy('content.name');
         return view($this->theme . 'about', $data);
     }
+    public function rules()
+    {
+
+        return view($this->theme . 'rules');
+    }
 
 
     public function blog()

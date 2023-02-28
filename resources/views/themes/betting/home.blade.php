@@ -1,5 +1,5 @@
-@extends($theme.'layouts.app')
-@section('title',trans('Home'))
+@extends($theme . 'layouts.app')
+@section('title', trans('Home'))
 
 @section('content')
 
@@ -8,40 +8,39 @@
         <!-- leftbar -->
         <div class="leftbar" id="leftbar">
             <div class="px-1 mt-2 d-lg-none">
-                <button
-                    class="remove-class-btn light btn-custom"
-                    onclick="removeClass('leftbar')"
-                >
+                <button class="remove-class-btn light btn-custom" onclick="removeClass('leftbar')">
                     <i class="fal fa-chevron-left"></i> @lang('Back')
                 </button>
             </div>
             <div class="top p-1 d-flex">
-                <button @click="liveUpComing('live')" type="button" :class="{light: (showType == 'upcoming')}"  class="btn-custom me-1">
+                <button @click="liveUpComing('live')" type="button" :class="{ light: (showType == 'upcoming') }"
+                    class="btn-custom me-1">
                     <i class="las la-podcast"></i>
                     @lang('Live')
                 </button>
-                <button @click="liveUpComing('upcoming')" type="button" :class="{light: (showType == 'live')}"  class="btn-custom ">
+                <button @click="liveUpComing('upcoming')" type="button" :class="{ light: (showType == 'live') }"
+                    class="btn-custom ">
                     <i class="las la-meteor"></i>
                     @lang('Upcoming')
                 </button>
             </div>
-            @include($theme.'partials.home.leftMenu')
+            @include($theme . 'partials.home.leftMenu')
 
             <div class="bottom p-1">
-                <a href="{{route('betResult')}}" class="btn-custom light w-100">@lang('results')</a>
+                <a href="{{ route('betResult') }}" class="btn-custom light w-100">@lang('results')</a>
             </div>
         </div>
 
-        @include($theme.'partials.home.rightbar')
+        @include($theme . 'partials.home.rightbar')
 
         <!-- contents -->
         <div class="content">
-            @include($theme.'partials.home.slider')
-            @include($theme.'partials.home.navbar')
-            @if(Request::routeIs('match'))
-                @include($theme.'partials.home.match')
+            @include($theme . 'partials.home.slider')
+            @include($theme . 'partials.home.navbar')
+            @if (Request::routeIs('match'))
+                @include($theme . 'partials.home.match')
             @else
-                @include($theme.'partials.home.content')
+                @include($theme . 'partials.home.content')
             @endif
 
         </div>
@@ -50,11 +49,10 @@
 @endsection
 
 @push('script')
-
     @php
         $segments = request()->segments();
-        $last  = end($segments);
-
+        $last = end($segments);
+        
     @endphp
 
     <script>
@@ -63,9 +61,9 @@
             data: {
 
                 loaded: true,
-                currency_symbol: "{{config('basic.currency_symbol')}}",
-                currency: "{{config('basic.currency')}}",
-                minimum_bet: "{{config('basic.minimum_bet')}}",
+                currency_symbol: "{{ config('basic.currency_symbol') }}",
+                currency: "{{ config('basic.currency') }}",
+                minimum_bet: "{{ config('basic.minimum_bet') }}",
                 allSports_filter: [],
                 upcoming_filter: [],
 
@@ -74,7 +72,7 @@
                 totalOdds: 0,
                 minimumAmo: 1,
                 return_amount: 0,
-                win_charge: "{{config('basic.win_charge')}}",
+                win_charge: "{{ config('basic.win_charge') }}",
                 form: {
                     amount: ''
                 },
@@ -94,32 +92,49 @@
 
             },
             methods: {
+                async getLigas() {
+                    await axios(
+                        'https://api.b365api.com/v1/league?token=150441-wWVhvIG7RGtsJF&sport_id=1&cc=br', {
+                            method: 'GET',
+                            mode: 'no-cors',
+                            headers: {
+                                'Access-Control-Allow-Origin': '*',
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                            },
+                            withCredentials: false,
+                        }).then(
+                        (response) => {
+                            console.log(response)
+                        }
+                    );
+                },
                 async getMatches() {
                     var _this = this;
-                    var _segment = "{{Request::segment(1)}}"
-                    var routeName = "{{Request::route()->getName()}}"
-                    var $lastSegment = "{{$last}}"
+                    var _segment = "{{ Request::segment(1) }}"
+                    var routeName = "{{ Request::route()->getName() }}"
+                    var $lastSegment = "{{ $last }}"
 
-                    var $url = '{{route('allSports')}}';
+                    var $url = '{{ route('allSports') }}';
 
                     if (routeName == 'category') {
-                        $url = '{{route('allSports')}}?categoryId=' + $lastSegment;
+                        $url = '{{ route('allSports') }}?categoryId=' + $lastSegment;
                     }
                     if (routeName == 'tournament') {
-                        $url = '{{route('allSports')}}?tournamentId=' + $lastSegment;
+                        $url = '{{ route('allSports') }}?tournamentId=' + $lastSegment;
                     }
 
                     if (routeName == 'match') {
-                        $url = '{{route('allSports')}}?matchId=' + $lastSegment;
+                        $url = '{{ route('allSports') }}?matchId=' + $lastSegment;
                     }
 
 
                     await axios.get($url)
-                        .then(function (response) {
+                        .then(function(response) {
                             _this.allSports_filter = response.data.liveList;
                             _this.upcoming_filter = response.data.upcomingList;
                         })
-                        .catch(function (error) {
+                        .catch(function(error) {
                             console.log(error);
                         })
                 },
@@ -134,7 +149,7 @@
                         _this.betSlip.push(data);
                         Notiflix.Notify.Success("Added to Bet slip");
                     } else {
-                        var result = _this.betSlip.map(function (obj) {
+                        var result = _this.betSlip.map(function(obj) {
                             if (obj.match_id == data.match_id) {
                                 obj = data
                             }
@@ -164,7 +179,7 @@
                     _this.totalOdds = _this.oddsCalc(_this.betSlip)
 
                     var selectData = JSON.parse(localStorage.getItem('newBetSlip'));
-                    var storeIds = selectData.filter(function (item) {
+                    var storeIds = selectData.filter(function(item) {
                         if (item.id === obj.id) {
                             return false;
                         }
@@ -206,7 +221,7 @@
                 },
 
                 goMatch(item) {
-                    var $url = '{{ route("match", [":match_name",":match_id"]) }}';
+                    var $url = '{{ route('match', [':match_name', ':match_id']) }}';
                     $url = $url.replace(':match_name', item.slug);
                     $url = $url.replace(':match_id', item.id);
                     window.location.href = $url;
@@ -221,7 +236,7 @@
                     });
                     var channel = pusher.subscribe('match-notification');
 
-                    channel.bind('App\\Events\\MatchNotification', function (data) {
+                    channel.bind('App\\Events\\MatchNotification', function(data) {
                         console.log(data)
                         if (data && data.type == 'Edit') {
                             _this.updateEventData(data)
@@ -234,7 +249,7 @@
                 updateEventData(data) {
                     var _this = this;
                     var list = _this.allSports_filter;
-                    const result = list.map(function (obj) {
+                    const result = list.map(function(obj) {
                         if (obj.id == data.match.id) {
                             obj = data.match
                         }
@@ -246,7 +261,7 @@
                     var list2 = _this.upcoming_filter;
 
 
-                    const upcomingResult = list2.map(function (obj) {
+                    const upcomingResult = list2.map(function(obj) {
                         if (obj.id == data.match.id) {
                             obj = data.match
                         }
@@ -268,9 +283,9 @@
                 },
                 betPlace() {
                     var _this = this;
-                    var authCheck = "{{auth()->check()}}"
+                    var authCheck = "{{ auth()->check() }}"
                     if (authCheck !== '1') {
-                        window.location.href = "{{route('login')}}"
+                        window.location.href = "{{ route('login') }}"
                         return 0;
                     }
                     if (_this.betSlip.length == 0) {
@@ -289,11 +304,11 @@
                         Notiflix.Notify.Failure("Minimum Bet " + _this.minimum_bet + " " + _this.currency);
                         return 0
                     }
-                    axios.post('{{route('user.betSlip')}}', {
-                        amount: _this.form.amount,
-                        activeSlip: _this.betSlip,
-                    })
-                        .then(function (response) {
+                    axios.post('{{ route('user.betSlip') }}', {
+                            amount: _this.form.amount,
+                            activeSlip: _this.betSlip,
+                        })
+                        .then(function(response) {
                             if (response.data.errors) {
                                 for (err in response.data.errors) {
                                     let error = response.data.errors[err][0]
@@ -305,7 +320,7 @@
                                 Notiflix.Notify.Warning("" + response.data.newSlipMessage);
                                 var newSlip = response.data.newSlip;
                                 var unlisted = _this.getDifference(_this.betSlip, newSlip);
-                                const newUnlisted = unlisted.map(function (obj) {
+                                const newUnlisted = unlisted.map(function(obj) {
                                     obj.is_unlock_match = 1;
                                     obj.is_unlock_question = 1;
                                     return obj
@@ -324,7 +339,7 @@
                             }
 
                         })
-                        .catch(function (err) {
+                        .catch(function(err) {
 
                         });
                 },
@@ -337,9 +352,9 @@
                     });
                 },
                 slicedArray(items) {
-                    return  Object.values(items)[0];
+                    return Object.values(items)[0];
                 },
-                liveUpComing(type){
+                liveUpComing(type) {
                     localStorage.setItem("showType", type);
                     this.showType = type
                 }
@@ -347,6 +362,5 @@
 
             }
         });
-
     </script>
 @endpush

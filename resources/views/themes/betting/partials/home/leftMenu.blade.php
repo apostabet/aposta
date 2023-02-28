@@ -10,6 +10,11 @@
             <i class="far fa-globe-americas"></i> <span>{{trans('All Sports')}}</span>
         </a>
     </li>
+    <li>
+        <a @click="getLigas()" class="" href="#">
+            <i class="far fa-globe-americas"></i> <span>{{trans('teste')}}</span>
+        </a>
+    </li>
     @forelse($gameCategories as $gameCategory)
         <li>
             <a

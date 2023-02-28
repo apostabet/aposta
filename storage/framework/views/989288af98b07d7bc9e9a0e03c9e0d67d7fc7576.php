@@ -10,6 +10,11 @@
             <i class="far fa-globe-americas"></i> <span><?php echo e(trans('All Sports')); ?></span>
         </a>
     </li>
+    <li>
+        <a @click="getLigas()" class="" href="#">
+            <i class="far fa-globe-americas"></i> <span><?php echo e(trans('teste')); ?></span>
+        </a>
+    </li>
     <?php $__empty_1 = true; $__currentLoopData = $gameCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $gameCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
         <li>
             <a

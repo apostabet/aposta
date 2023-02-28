@@ -1,4 +1,4 @@
-<?php $__env->startSection('title',trans('Home')); ?>
+<?php $__env->startSection('title', trans('Home')); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -7,40 +7,39 @@
         <!-- leftbar -->
         <div class="leftbar" id="leftbar">
             <div class="px-1 mt-2 d-lg-none">
-                <button
-                    class="remove-class-btn light btn-custom"
-                    onclick="removeClass('leftbar')"
-                >
+                <button class="remove-class-btn light btn-custom" onclick="removeClass('leftbar')">
                     <i class="fal fa-chevron-left"></i> <?php echo app('translator')->get('Back'); ?>
                 </button>
             </div>
             <div class="top p-1 d-flex">
-                <button @click="liveUpComing('live')" type="button" :class="{light: (showType == 'upcoming')}"  class="btn-custom me-1">
+                <button @click="liveUpComing('live')" type="button" :class="{ light: (showType == 'upcoming') }"
+                    class="btn-custom me-1">
                     <i class="las la-podcast"></i>
                     <?php echo app('translator')->get('Live'); ?>
                 </button>
-                <button @click="liveUpComing('upcoming')" type="button" :class="{light: (showType == 'live')}"  class="btn-custom ">
+                <button @click="liveUpComing('upcoming')" type="button" :class="{ light: (showType == 'live') }"
+                    class="btn-custom ">
                     <i class="las la-meteor"></i>
                     <?php echo app('translator')->get('Upcoming'); ?>
                 </button>
             </div>
-            <?php echo $__env->make($theme.'partials.home.leftMenu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php echo $__env->make($theme . 'partials.home.leftMenu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             <div class="bottom p-1">
                 <a href="<?php echo e(route('betResult')); ?>" class="btn-custom light w-100"><?php echo app('translator')->get('results'); ?></a>
             </div>
         </div>
 
-        <?php echo $__env->make($theme.'partials.home.rightbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make($theme . 'partials.home.rightbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <!-- contents -->
         <div class="content">
-            <?php echo $__env->make($theme.'partials.home.slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            <?php echo $__env->make($theme.'partials.home.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php echo $__env->make($theme . 'partials.home.slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <?php echo $__env->make($theme . 'partials.home.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php if(Request::routeIs('match')): ?>
-                <?php echo $__env->make($theme.'partials.home.match', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make($theme . 'partials.home.match', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php else: ?>
-                <?php echo $__env->make($theme.'partials.home.content', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php echo $__env->make($theme . 'partials.home.content', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <?php endif; ?>
 
         </div>
@@ -49,11 +48,10 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
-
     <?php
         $segments = request()->segments();
-        $last  = end($segments);
-
+        $last = end($segments);
+        
     ?>
 
     <script>
@@ -93,6 +91,23 @@
 
             },
             methods: {
+                async getLigas() {
+                    await axios(
+                        'https://api.b365api.com/v1/league?token=150441-wWVhvIG7RGtsJF&sport_id=1&cc=br', {
+                            method: 'GET',
+                            mode: 'no-cors',
+                            headers: {
+                                'Access-Control-Allow-Origin': '*',
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                            },
+                            withCredentials: false,
+                        }).then(
+                        (response) => {
+                            console.log(response)
+                        }
+                    );
+                },
                 async getMatches() {
                     var _this = this;
                     var _segment = "<?php echo e(Request::segment(1)); ?>"
@@ -114,11 +129,11 @@
 
 
                     await axios.get($url)
-                        .then(function (response) {
+                        .then(function(response) {
                             _this.allSports_filter = response.data.liveList;
                             _this.upcoming_filter = response.data.upcomingList;
                         })
-                        .catch(function (error) {
+                        .catch(function(error) {
                             console.log(error);
                         })
                 },
@@ -133,7 +148,7 @@
                         _this.betSlip.push(data);
                         Notiflix.Notify.Success("Added to Bet slip");
                     } else {
-                        var result = _this.betSlip.map(function (obj) {
+                        var result = _this.betSlip.map(function(obj) {
                             if (obj.match_id == data.match_id) {
                                 obj = data
                             }
@@ -163,7 +178,7 @@
                     _this.totalOdds = _this.oddsCalc(_this.betSlip)
 
                     var selectData = JSON.parse(localStorage.getItem('newBetSlip'));
-                    var storeIds = selectData.filter(function (item) {
+                    var storeIds = selectData.filter(function(item) {
                         if (item.id === obj.id) {
                             return false;
                         }
@@ -205,7 +220,7 @@
                 },
 
                 goMatch(item) {
-                    var $url = '<?php echo e(route("match", [":match_name",":match_id"])); ?>';
+                    var $url = '<?php echo e(route('match', [':match_name', ':match_id'])); ?>';
                     $url = $url.replace(':match_name', item.slug);
                     $url = $url.replace(':match_id', item.id);
                     window.location.href = $url;
@@ -220,7 +235,7 @@
                     });
                     var channel = pusher.subscribe('match-notification');
 
-                    channel.bind('App\\Events\\MatchNotification', function (data) {
+                    channel.bind('App\\Events\\MatchNotification', function(data) {
                         console.log(data)
                         if (data && data.type == 'Edit') {
                             _this.updateEventData(data)
@@ -233,7 +248,7 @@
                 updateEventData(data) {
                     var _this = this;
                     var list = _this.allSports_filter;
-                    const result = list.map(function (obj) {
+                    const result = list.map(function(obj) {
                         if (obj.id == data.match.id) {
                             obj = data.match
                         }
@@ -245,7 +260,7 @@
                     var list2 = _this.upcoming_filter;
 
 
-                    const upcomingResult = list2.map(function (obj) {
+                    const upcomingResult = list2.map(function(obj) {
                         if (obj.id == data.match.id) {
                             obj = data.match
                         }
@@ -289,10 +304,10 @@
                         return 0
                     }
                     axios.post('<?php echo e(route('user.betSlip')); ?>', {
-                        amount: _this.form.amount,
-                        activeSlip: _this.betSlip,
-                    })
-                        .then(function (response) {
+                            amount: _this.form.amount,
+                            activeSlip: _this.betSlip,
+                        })
+                        .then(function(response) {
                             if (response.data.errors) {
                                 for (err in response.data.errors) {
                                     let error = response.data.errors[err][0]
@@ -304,7 +319,7 @@
                                 Notiflix.Notify.Warning("" + response.data.newSlipMessage);
                                 var newSlip = response.data.newSlip;
                                 var unlisted = _this.getDifference(_this.betSlip, newSlip);
-                                const newUnlisted = unlisted.map(function (obj) {
+                                const newUnlisted = unlisted.map(function(obj) {
                                     obj.is_unlock_match = 1;
                                     obj.is_unlock_question = 1;
                                     return obj
@@ -323,7 +338,7 @@
                             }
 
                         })
-                        .catch(function (err) {
+                        .catch(function(err) {
 
                         });
                 },
@@ -336,9 +351,9 @@
                     });
                 },
                 slicedArray(items) {
-                    return  Object.values(items)[0];
+                    return Object.values(items)[0];
                 },
-                liveUpComing(type){
+                liveUpComing(type) {
                     localStorage.setItem("showType", type);
                     this.showType = type
                 }
@@ -346,8 +361,7 @@
 
             }
         });
-
     </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make($theme.'layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\aposta\resources\views/themes/betting/home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make($theme . 'layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\aposta\resources\views/themes/betting/home.blade.php ENDPATH**/ ?>
